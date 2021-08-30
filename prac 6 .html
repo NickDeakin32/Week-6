@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Prac 6</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> 
+</head>
+<body>
+
+<div id="top">
+
+	<form id="myform">
+	
+	
+	<h3>My User Form Validation</h3>
+	
+	<label for="name">Name: </label><br><br>
+	
+	<input id="name" v-model.trim="username" type="text" placeholder="Myname"> <br><br>
+	<p>Username: {{username}}</p>
+
+	<label for="password">Password: </label><br><br>
+	<input id="password" v-model="password" type="password" placeholder="******"> <br><br>
+
+	<label for="email">Email: </label><br><br>
+	<input id="email" v-model="email" type="text" placeholder="example@gmail.com"> <br><br>
+
+	<button v-on:click="checkInput">Submit</button>
+	</form>
+	</div>
+	
+	<h3> Checkbox Example </h3> 
+	<div id="checkboxes">
+	  <input type="checkbox" id="Nick" value="Nick" v-model="checkedNames" />
+	  <label for="Nick">Nick</label>
+	  <input type="checkbox" id="Angelo" value="Angelo" v-model="checkedNames" />
+	  <label for="Angelo">Angelo</label>
+	  <input type="checkbox" id="Lucy" value="Lucy" v-model="checkedNames" />
+	  <label for="Lucy">Lucy</label>
+	  <br />
+	  <span>Checked names: {{ checkedNames }}</span>
+	  
+	  
+	  <h3> Dropdown Menu Box Example</h3> 
+	  <p> The default option is selected as option 3</p>
+	  <br><br>
+	  <select v-model="myselect">
+		
+		<option v-for="whatever in options" 
+			v-bind:value="whatever.value"	
+		>{{whatever.text}}</option> 
+	  
+	  </select>
+	  
+	</div>
+</div>
+
+
+
+<script>
+
+
+var form = new Vue({
+	el:"#myform",
+	data:{
+		username:'',
+		password:'',
+		email:'',
+		search:'',
+		
+
+	
+	},
+	methods: {
+		checkInput: function() {
+			var str ='';
+			if (this.username) {
+				str = str + "username: " + this.username; 
+			}
+			if (this.password) {
+				str = str + "password: " + this.password;
+			}
+			if (this.email) {
+				str = str + "email: " + this.email;
+			}
+			if (str) {
+				alert(str)
+			} else {
+				alert("You have not entered all information correctly!")
+			}
+		
+		}	
+	
+	}
+
+})
+
+
+
+var app = new Vue({
+  el: "#checkboxes",
+  data: {
+    checkedNames:[],
+	options: [
+        { text: 'Which one', value: 'A' },
+        { text: 'Should I', value: 'B' },
+        { text: 'Select?', value: 'C' }
+      ],
+	myselect:'C',
+    
+  }  
+  
+})
+
+</script>
+
+</body>
+</html>
